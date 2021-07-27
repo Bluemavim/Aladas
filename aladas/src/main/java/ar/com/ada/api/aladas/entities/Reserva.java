@@ -22,7 +22,7 @@ public class Reserva {
     private Pasajero pasajero;
 
     @OneToOne(mappedBy = "reserva", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Pasaje pasaje; // en linea 24: nombre del atributo que hace referencia a la tabla.
+    private Pasaje pasaje; 
 
     @Column(name = "estado_reserva_id")
     private Integer estadoReservaId;
@@ -90,8 +90,8 @@ public class Reserva {
      * setter(asociar) this.pasaje = pasaje; pasaje.setReserva(this); }
      */
 
-    /* Version alternativa en vez de setter */
-    public void asociarPasaje(Pasaje pasaje) { // Relacion bidireccion a traves el setter(asociar)
+    /* Versión alternativa: Relación bidireccional a través del setter */
+    public void asociarPasaje(Pasaje pasaje) { 
         this.pasaje = pasaje;
         pasaje.setReserva(this);
     }
@@ -103,7 +103,7 @@ public class Reserva {
 
         private final Integer value;
 
-        // NOTE: Enum constructor tiene que estar en privado
+        
         private EstadoReservaEnum(Integer value) {
             this.value = value;
         }
@@ -113,7 +113,7 @@ public class Reserva {
         }
 
         public static EstadoReservaEnum parse(Integer id) {
-            EstadoReservaEnum status = null; // Default
+            EstadoReservaEnum status = null; 
             for (EstadoReservaEnum item : EstadoReservaEnum.values()) {
                 if (item.getValue().equals(id)) {
                     status = item;

@@ -120,7 +120,6 @@ public class Vuelo {
 
         private final Integer value;
 
-        // NOTE: Enum constructor tiene que estar en privado
         private EstadoVueloEnum(Integer value) {
             this.value = value;
         }
@@ -130,7 +129,7 @@ public class Vuelo {
         }
 
         public static EstadoVueloEnum parse(Integer id) {
-            EstadoVueloEnum status = null; // Default
+            EstadoVueloEnum status = null; 
             for (EstadoVueloEnum item : EstadoVueloEnum.values()) {
                 if (item.getValue().equals(id)) {
                     status = item;

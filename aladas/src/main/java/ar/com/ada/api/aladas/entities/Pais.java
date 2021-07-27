@@ -6,7 +6,6 @@ public class Pais {
 
         private final Integer value;
 
-        // NOTE: Enum constructor tiene que estar en privado
         private PaisEnum(Integer value) {
             this.value = value;
         }
@@ -16,7 +15,7 @@ public class Pais {
         }
 
         public static PaisEnum parse(Integer id) {
-            PaisEnum status = null; // Default
+            PaisEnum status = null; 
             for (PaisEnum item : PaisEnum.values()) {
                 if (item.getValue().equals(id)) {
                     status = item;
@@ -33,7 +32,6 @@ public class Pais {
 
         private final Integer value;
 
-        // NOTE: Enum constructor tiene que estar en privado
         private TipoDocuEnum(Integer value) {
             this.value = value;
         }
@@ -43,7 +41,7 @@ public class Pais {
         }
 
         public static TipoDocuEnum parse(Integer id) {
-            TipoDocuEnum status = null; // Default
+            TipoDocuEnum status = null; 
             for (TipoDocuEnum item : TipoDocuEnum.values()) {
                 if (item.getValue().equals(id)) {
                     status = item;

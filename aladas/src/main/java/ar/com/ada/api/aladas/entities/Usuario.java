@@ -106,7 +106,6 @@ public class Usuario {
 
         private final Integer value;
 
-        // NOTE: Enum constructor tiene que estar en privado
         private TipoUsuarioEnum(Integer value) {
             this.value = value;
         }
@@ -116,7 +115,7 @@ public class Usuario {
         }
 
         public static TipoUsuarioEnum parse(Integer id) {
-            TipoUsuarioEnum status = null; // Default
+            TipoUsuarioEnum status = null; 
             for (TipoUsuarioEnum item : TipoUsuarioEnum.values()) {
                 if (item.getValue().equals(id)) {
                     status = item;
