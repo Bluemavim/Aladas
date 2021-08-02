@@ -30,7 +30,7 @@ public class Vuelo {
     private BigDecimal precio;
 
     @Column(name = "codigo_moneda")
-    private String codigoMoneda;
+    private String codigoMoneda; // codigos ISO: ARS , USD
 
     @OneToMany(mappedBy = "vuelo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Reserva> reservas = new ArrayList<>();
@@ -120,6 +120,7 @@ public class Vuelo {
 
         private final Integer value;
 
+        // NOTE: Enum constructor tiene que estar en privado
         private EstadoVueloEnum(Integer value) {
             this.value = value;
         }
@@ -129,7 +130,7 @@ public class Vuelo {
         }
 
         public static EstadoVueloEnum parse(Integer id) {
-            EstadoVueloEnum status = null; 
+            EstadoVueloEnum status = null; // Default
             for (EstadoVueloEnum item : EstadoVueloEnum.values()) {
                 if (item.getValue().equals(id)) {
                     status = item;
