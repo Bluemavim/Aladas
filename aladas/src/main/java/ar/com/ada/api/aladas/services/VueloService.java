@@ -97,4 +97,9 @@ public class VueloService {
     public void actualizar(Vuelo vuelo){
         repo.save(vuelo);
     }
+
+    public List<Vuelo> traerVuelosAbiertos() {
+        return repo.findByEstadoVueloId(EstadoVueloEnum.ABIERTO.getValue());
+    }
+
 }
