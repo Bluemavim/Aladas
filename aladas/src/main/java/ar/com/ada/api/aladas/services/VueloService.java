@@ -89,4 +89,12 @@ public class VueloService {
         OK, ERROR_PRECIO, ERROR_AEROPUERTO_ORIGEN, ERROR_AEROPUERTO_DESTINO, ERROR_FECHA, ERROR_MONEDA,
         ERROR_CAPACIDAD_MINIMA, ERROR_CAPACIDAD_MAXIMA, ERROR_AEROPUERTOS_IGUALES, ERROR_GENERAL,
     }
+
+    public Vuelo buscarPorId(Integer id){
+        return repo.findByVueloId(id);
+    }
+
+    public void actualizar(Vuelo vuelo){
+        repo.save(vuelo);
+    }
 }
