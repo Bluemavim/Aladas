@@ -52,6 +52,37 @@ public class VueloController {
 
     }
 
+    @PutMapping("/api/vuelos/{id}/estados")
+    public ResponseEntity<GenericResponse> putActualizarEstadoVuelo (@PathVariable Integer id, @RequestBody EstadoVueloRequest estadoVuelo){
+        
+        GenericResponse r = new GenericResponse();
+        r.isOk = true;
+        Vuelo vuelo = service.buscarPorId(id);
+        vuelo.setEstadoVueloId(estadoVuelo.estado);
+        service.actualizar(vuelo);
+        r.message = "Vuelo actualizado";
+        return ResponseEntity.ok(r);  
+ 
+        }
+
+
+    @GetMapping("/api/vuelos/abiertos")
+    public ResponseEntity<List<Vuelo>> getVuelosAbiertos(){
+                
+        return ResponseEntity.ok(service.traerVuelosAbiertos());
+    }
+
+
+    }
+
+
+
+
+
+
+
+
+
     /*
      * @PostMapping("/api/v2/vuelos") public ResponseEntity<GenericResponse>
      * postCrearVueloV2(@RequestBody Vuelo vuelo) { GenericResponse respuesta = new
