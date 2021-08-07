@@ -6,6 +6,8 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.NaturalId;
 
+import net.bytebuddy.asm.Advice.Return;
+
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -25,7 +27,7 @@ public class Usuario {
     @Column(name = "fecha_login")
     private Date fechaLogin;
 
-    @Column(name = "tipo_usuario")
+    @Column(name = "tipo_usuario_id")
     private Integer tipoUsuario;
 
     @OneToOne
@@ -101,11 +103,25 @@ public class Usuario {
 
     }
 
+    public Integer obtenerEntityId() {
+        // TODO, segun el tipo de usuario, devolver el pasajeroId o staffId o nada!
+        switch (this.getTipoUsuario()) {
+            case PASAJERO:
+                return this.getPasajero().getPasajeroId();
+            case STAFF:
+                return this.getStaff().getStaffId();
+            default:
+                break;
+        }
+        return null;
+    }
+
     public enum TipoUsuarioEnum {
         STAFF(1), PASAJERO(2);
 
         private final Integer value;
 
+        // NOTE: Enum constructor tiene que estar en privado
         private TipoUsuarioEnum(Integer value) {
             this.value = value;
         }
@@ -115,7 +131,7 @@ public class Usuario {
         }
 
         public static TipoUsuarioEnum parse(Integer id) {
-            TipoUsuarioEnum status = null; 
+            TipoUsuarioEnum status = null; // Default
             for (TipoUsuarioEnum item : TipoUsuarioEnum.values()) {
                 if (item.getValue().equals(id)) {
                     status = item;
