@@ -6,11 +6,15 @@ import org.springframework.web.bind.annotation.*;
 
 import ar.com.ada.api.aladas.entities.Aeropuerto;
 import ar.com.ada.api.aladas.entities.Vuelo;
+import ar.com.ada.api.aladas.entities.Vuelo.EstadoVueloEnum;
+import ar.com.ada.api.aladas.models.request.EstadoVueloRequest;
 import ar.com.ada.api.aladas.models.response.GenericResponse;
 import ar.com.ada.api.aladas.services.AeropuertoService;
 import ar.com.ada.api.aladas.services.VueloService;
 
 import static ar.com.ada.api.aladas.services.VueloService.ValidacionVueloDataEnum;
+
+import java.util.List;
 
 @RestController
 public class VueloController {
@@ -19,7 +23,7 @@ public class VueloController {
      * @Autowired //Version simple VueloService service;
      */
 
-    // Version mas "pro"
+    // Version mas "pro"// ¿por qué?
     private VueloService service;
 
     private AeropuertoService aeropuertoService;
@@ -39,7 +43,7 @@ public class VueloController {
 
             respuesta.isOk = true;
             respuesta.id = vuelo.getVueloId();
-            respuesta.message = "Vuelo creado correctamente";
+            respuesta.message = "El vuelo ha sido creado correctamente.";
 
             return ResponseEntity.ok(respuesta);
         } else {
@@ -60,7 +64,7 @@ public class VueloController {
         Vuelo vuelo = service.buscarPorId(id);
         vuelo.setEstadoVueloId(estadoVuelo.estado);
         service.actualizar(vuelo);
-        r.message = "Vuelo actualizado";
+        r.message = "Vuelo actualizado.";
         return ResponseEntity.ok(r);  
  
         }
@@ -99,4 +103,3 @@ public class VueloController {
      * 
      * return ResponseEntity.ok(respuesta); }
      */
-}

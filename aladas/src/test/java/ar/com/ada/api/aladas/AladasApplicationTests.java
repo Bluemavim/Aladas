@@ -8,8 +8,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import ar.com.ada.api.aladas.entities.Aeropuerto;
 import ar.com.ada.api.aladas.entities.Vuelo;
+import ar.com.ada.api.aladas.entities.Vuelo.EstadoVueloEnum;
+import ar.com.ada.api.aladas.services.AeropuertoService;
 import ar.com.ada.api.aladas.services.VueloService;
+import ar.com.ada.api.aladas.services.VueloService.ValidacionVueloDataEnum;
 
 @SpringBootTest
 class AladasApplicationTests {
