@@ -17,6 +17,7 @@ import ar.com.ada.api.aladas.entities.Pais.TipoDocuEnum;
 import ar.com.ada.api.aladas.entities.Usuario.TipoUsuarioEnum;
 import ar.com.ada.api.aladas.repos.UsuarioRepository;
 import ar.com.ada.api.aladas.security.Crypto;
+import ar.com.ada.api.aladas.sistema.comm.EmailService;
 
 @Service
 public class UsuarioService {
@@ -27,6 +28,9 @@ public class UsuarioService {
   UsuarioRepository usuarioRepository;
   @Autowired
   PasajeroService pasajeroService;
+
+  @Autowired
+  EmailService emailService;
 
   public Usuario buscarPorUsername(String username) {
     return usuarioRepository.findByUsername(username);
@@ -40,7 +44,7 @@ public class UsuarioService {
 
     Usuario u = buscarPorUsername(username);
 
-    if (u == null || !u.getPassword().equals(Crypto.encrypt(password, u.getEmail().toLowerCase()))) { {
+    if (u == null || !u.getPassword().equals(Crypto.encrypt(password, u.getEmail().toLowerCase()))) {
 
       throw new BadCredentialsException("Usuario o contraseña invalida");
     }
@@ -82,7 +86,7 @@ public class UsuarioService {
 
       
     }
-
+    emailService.SendEmail(usuario.getEmail(), "Registracion Exitosa", "Bienvenido, ud ha sido registrado");
     // Todo!
     return usuario;
   }
