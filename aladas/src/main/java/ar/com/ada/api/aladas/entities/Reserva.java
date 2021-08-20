@@ -24,7 +24,8 @@ public class Reserva {
     @OneToOne(mappedBy = "reserva", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Pasaje pasaje; 
 
-    @Column(name = "estado_reserva_id")
+    //Originalmente era estado_reserva_id
+    @Column(name = "tipo_estado_reserva_id")
     private Integer estadoReservaId;
 
     @Column(name = "fecha_emision")

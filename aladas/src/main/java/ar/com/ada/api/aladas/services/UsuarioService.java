@@ -46,7 +46,7 @@ public class UsuarioService {
 
     if (u == null || !u.getPassword().equals(Crypto.encrypt(password, u.getEmail().toLowerCase()))) {
 
-      throw new BadCredentialsException("Usuario o contraseña invalida");
+      throw new BadCredentialsException("Usuario o contraseña inválida");
     }
 
     return u;
@@ -86,7 +86,7 @@ public class UsuarioService {
 
       
     }
-    emailService.SendEmail(usuario.getEmail(), "Registracion Exitosa", "Bienvenido, ud ha sido registrado");
+    emailService.SendEmail(usuario.getEmail(), "Registro exitoso", "Bienvenid@ a Aladas. Su usuario ha sido registrado");
     // Todo!
     return usuario;
   }

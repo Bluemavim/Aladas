@@ -49,7 +49,7 @@ public class AuthController {
                 req.identificationType, req.identification, req.email, req.password);
 
         r.isOk = true;
-        r.message = "Te registraste con exitoooo!!!!!!!";
+        r.message = "¡Te registraste con éxito!";
         r.userId = usuario.getUsuarioId(); // <-- AQUI ponemos el numerito de id para darle a front!
 
         return ResponseEntity.ok(r);

@@ -3,7 +3,7 @@ package ar.com.ada.api.aladas;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
+//import java.util.*;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +61,6 @@ class AladasApplicationTests {
 		String codigoIATAOk2 = "AEP";
 		String codigoIATAOk3 = "NQN";
 		String codigoIATAOk4 = "N  ";
-		String codigoIATAOk5 = "N39";
 
 		/*//String codigoIATAOk4 = "N  ";
 		//En este caso, afirmo que espero que el length del codigoIATAOk1 sea 3
@@ -108,17 +107,17 @@ class AladasApplicationTests {
 		// origen es igual al de destion o todo lo que se les ocurra
 	}
 
-	@Test
-	void vueloChequearQueLosPendientesNoTenganVuelosViejos(DateTime currentTime)) {
+	//@Test
+	//void vueloChequearQueLosPendientesNoTenganVuelosViejos(DateTime currentTime)) {
 
-		DateTime currentTime;
-		for each vuelo in lista de vuelos:
-		assert vuelo.getfecha 
+		//DateTime currentTime;
+		//for each vuelo in lista de vuelos:
+		//assert vuelo.getfecha 
 
 		// Queremos validar que cuando hagamos un metodo que traiga los vuelos actuales
 		// para
 		// hacer reservas, no haya ningun vuelo en el pasado.
-	}
+	//}
 
 	@Test
 	void vueloVerificarCapacidadMinima() {

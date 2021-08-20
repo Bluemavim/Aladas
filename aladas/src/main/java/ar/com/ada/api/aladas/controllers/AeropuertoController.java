@@ -23,7 +23,7 @@ public class AeropuertoController {
         service.crear(aeropuerto.getAeropuertoId(), aeropuerto.getNombre(), aeropuerto.getCodigoIATA());
 
         respuesta.isOk = true;
-        respuesta.message = "Se creo correctamente";
+        respuesta.message = "El aeropuerto se creó correctamente";
         respuesta.id = aeropuerto.getAeropuertoId();
 
         return ResponseEntity.ok(respuesta);
