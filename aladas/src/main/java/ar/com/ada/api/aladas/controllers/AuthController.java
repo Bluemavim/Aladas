@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,11 +19,8 @@ import ar.com.ada.api.aladas.models.request.*;
 import ar.com.ada.api.aladas.models.response.*;
 import ar.com.ada.api.aladas.security.jwt.JWTTokenUtil;
 import ar.com.ada.api.aladas.services.JWTUserDetailsService;
-import ar.com.ada.api.aladas.services.UsuarioService;;
+import ar.com.ada.api.aladas.services.UsuarioService;
 
-/**
- * AuthController
- */
 @RestController
 public class AuthController {
 
@@ -39,24 +38,32 @@ public class AuthController {
 
     // Auth : authentication ->
     @PostMapping("api/auth/register")
-    public ResponseEntity<RegistrationResponse> postRegisterUser(@RequestBody RegistrationRequest req,
+    public ResponseEntity<RegistrationResponse> postRegisterUser(@Valid @RequestBody RegistrationRequest req,
             BindingResult results) {
         RegistrationResponse r = new RegistrationResponse();
 
-        // aca creamos la persona y el usuario a traves del service.
+        if (results.hasErrors()){ 
+            r.isOk = false;
+            r.message = "Hubo errores al recibir el request";
+            results.getFieldErrors().stream().forEach(e -> {
+                r.errors.add(new ErrorItemInfo(e.getField(), e.getDefaultMessage()));
+            });
+
+            return ResponseEntity.badRequest().body(r);
+        }
 
         Usuario usuario = usuarioService.crearUsuario(req.userType, req.fullName, req.country, req.birthDate,
                 req.identificationType, req.identification, req.email, req.password);
 
         r.isOk = true;
-        r.message = "¡Te registraste con éxito!";
-        r.userId = usuario.getUsuarioId(); // <-- AQUI ponemos el numerito de id para darle a front!
+        r.message = "El usuario se ha registrado exitosamente.";
+        r.userId = usuario.getUsuarioId(); 
 
         return ResponseEntity.ok(r);
 
     }
 
-    @PostMapping("api/auth/login") // probando nuestro login
+    @PostMapping("api/auth/login") 
     public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginRequest authenticationRequest,
             BindingResult results) throws Exception {
 
