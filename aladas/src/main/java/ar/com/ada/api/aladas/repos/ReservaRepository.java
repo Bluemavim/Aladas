@@ -7,5 +7,6 @@ import ar.com.ada.api.aladas.entities.*;
 
 @Repository
 public interface ReservaRepository extends JpaRepository<Reserva, Integer> {
+    Reserva findByReservaId (Integer id);
 
 }

@@ -32,9 +32,6 @@ class AladasApplicationTests {
 
 		Vuelo vueloConPrecioNegativo = new Vuelo();
 		vueloConPrecioNegativo.setPrecio(new BigDecimal(-100));
-
-		// Assert: afirmar
-		// afirmar quie sea verdadero: assertFalse
 		assertFalse(vueloService.validarPrecio(vueloConPrecioNegativo));
 
 	}
@@ -44,31 +41,18 @@ class AladasApplicationTests {
 
 		Vuelo vueloConPrecioOK = new Vuelo();
 		vueloConPrecioOK.setPrecio(new BigDecimal(100));
-
-		// Assert: afirmar
-		// afirmar quie sea verdadero: assertTrue
 		assertTrue(vueloService.validarPrecio(vueloConPrecioOK));
 
 	}
 
 	@Test
 	void aeropuertoValidarCodigoIATAOK() {
-		// From Florencia Di Felice to Everyone: 07:42 PM
-		// el código no debe llevar número y sólo 3 letras, así que habría que limitarlo
-		// a eso, no?
 
 		String codigoIATAOk1 = "EZE";
 		String codigoIATAOk2 = "AEP";
 		String codigoIATAOk3 = "NQN";
 		String codigoIATAOk4 = "N  ";
 
-		/*//String codigoIATAOk4 = "N  ";
-		//En este caso, afirmo que espero que el length del codigoIATAOk1 sea 3
-		assertEquals(3, codigoIATAOk1.length());
-		//En este caso, afirmo que espero qeu el resultado de la condicion
-		//sea verdaderro(en este caso, lenght == 3)
-		assertTrue(codigoIATAOk2.length() == 3);
-		//assertTrue(codigoIATAOk4.length() == 3);*/
 
 		Aeropuerto aeropuerto1 = new Aeropuerto();
 		aeropuerto1.setCodigoIATA(codigoIATAOk1);
@@ -95,7 +79,6 @@ class AladasApplicationTests {
 
 	@Test
 	void aeropuertoValidarCodigoIATANoOK() {
-		// From Florencia Di Felice to Everyone: 07:42 PM
 		// el código no debe llevar número y sólo 3 letras, así que habría que limitarlo
 		// a eso, no?
 
